@@ -1,0 +1,289 @@
+## 1. 조건문 
+### 1-1. if else
+```java
+public static void main(String[] args) {
+		
+		int score = (int) (Math.random()*20) + 81;
+		String grade;
+		System.out.println("점수 : " + score);
+		
+		if(score >=90) {
+			if(score>=95) {
+				grade = "A+";
+			} else {
+				grade = "A";
+			} 
+	    	} else {
+				if (score>=85) {
+					grade = "B+";
+				} else {
+					grade = "B";
+			}
+		}
+		System.out.println("학점 : " + grade);
+	}
+```
+`Math.random()`  >> 0~1 임의의 실수 리턴
+→ ` 0 <= Math.random() < 1`
+
+### 1.2 switch
+#### 1.2.1) break있는 switch문
+```java
+	public static void main(String[] args) {
+		
+		int num = (int) (Math.random()*6) +1;
+		
+		switch(num) {
+		case 1 : 
+			System.out.println("1번이 나왔습니다.");
+			break;
+		case 2 :
+			System.out.println("2번이 나왔습니다.");
+			break;
+		case 3 :
+			System.out.println("3번이 나왔습니다.");
+			break;
+		case 4 :
+			System.out.println("4번이 나왔습니다.");
+			break;
+		case 5 :
+			System.out.println("5번이 나왔습니다.");
+			break;
+		default : 
+			System.out.println("6번이 나왔습니다.");
+			break;	
+		}
+	}
+```
+✅default는 꼭 들어갈 필요없음(생략가능)
+#### 1.2.2) break없는 switch문
+ ```java
+	public static void main(String[] args) {
+		
+		int time = (int)(Math.random()*4) +8;
+		System.out.println("[현재시간:"+ time+"시]");
+		
+		switch(time) {
+		case 8:
+			System.out.println("출근합니다");
+		case 9:
+			System.out.println("회의를 합니다");
+		case 10:
+			System.out.println("업무를 봅니다");
+		default:
+			System.out.println("외근을 나갑니다");
+		}
+		} 
+ ```
+✅ default문 사용시 `결과는 두 개가 나옴`  (위 구문에서)
+ [현재시간:10시]
+- 업무를 봅니다
+- 외근을 나갑니다 >> default에 대한 결과
+#### 1.2.3) break없는 switch문
+✅ A 케이스에도, a 케이스에도 동일한 결과문이 리턴되면 좋겠다
+```java
+case 'A':
+case 'a':
+```
+```java
+public static void main(String[] args) {
+		
+		char grade = 'B';
+		
+		switch(grade) {
+		case 'A':
+		case 'a':
+			System.out.println("우수회원입니다");
+			break;
+		case 'B':
+		case 'b':
+			System.out.println("일반회원입니다");
+			break;
+		default:
+			System.out.println("손님입니다");
+		}
+		}
+```
+## 2. 반복문
+✅`for` : 반복 횟수를 알 때 사용
+✅`while` : 반복 횟수를 모를 때 사용
+이라고 생각하면 이해하기 쉽다.
+### 2-1. for문
+- 블록 벗어나지 않게 주의!
+```java
+public static void main(String[] args) {
+		
+		int sum = 0;
+		
+		for (int i=1; i<=100; i++) {
+			sum = sum + i;
+		}
+		System.out.println(i);    >> error! i 때문에.
+		}
+```
+### 2-2. while문
+```java
+	public static void main(String[] args) throws IOException {
+		
+		boolean run = true;
+		int currentSpeed= 0;
+		int keyCode = 0;
+		
+		while (run) {
+			if (keyCode != 13&& keyCode!=10) {
+		System.out.println("----------------");
+		System.out.println("1.증속 | 2.감속|3.중지");
+		System.out.println("----------------");	
+		System.out.print("선택:"); 
+			}
+			
+			keyCode = System.in.read();
+		
+		if (keyCode == 49) {
+			currentSpeed++;
+			System.out.println("현재속도 ="+ currentSpeed);
+		} else if (keyCode == 50) {
+			currentSpeed --;
+			System.out.println("현재속도 =" + currentSpeed);
+		} else if (keyCode ==51) {
+			run = false;
+			System.out.println("프로그램을 종료합니다");
+		}
+		}
+	}`
+```
+### 2-2. do-while문
+![](https://velog.velcdn.com/images/gpfl5202/post/3553bf9b-098f-4d79-968e-8417aa0dbd00/image.png)
+- 무조건 처음 한 번은 실행을 하고 그 다음에 조건에 맞는지 확인한다.
+✅while(조건식); 후에는 아무것도 안쓰는거야. 왜 그런지 생각을 하자. 
+```java
+public static void main(String[] args) throws IOException {
+		
+		System.out.println("메시지를 입력하세요");
+		System.out.println("프로그램을 종료하려면 q를 입력하세요");
+		System.out.println(">");
+		
+		Scanner scanner = new Scanner(System.in);
+		String inputString;
+		
+		do {
+			inputString = scanner.nextLine();
+			System.out.println(inputString);
+	} while (! inputString.equals( "q")); 
+	}
+```
+### 2-3. 반복문 break
+- 반복문이 중첩되어 있을 경우 break문은 가장 가까운 반복문만 종료
+![](https://velog.velcdn.com/images/gpfl5202/post/a223370c-807b-4089-802a-da8dcd10fce7/image.png)
+✅ <span style="color:red">바깥쪽 반복문까지 종료시키려면 반복문에 이름(라벨)을 붙이고, "break이름;"을 사용</span>
+```java
+public static void main(String[] args){
+		
+		Outter: for(char upper='A'; upper <='Z'; upper ++) {
+			
+			for(char lower='a'; upper <='z'; lower ++) {
+				System.out.println(upper + "_" + lower);
+				if (lower == 'g') {
+					break Outter;
+				}
+			}
+		}	
+	}
+```
+### 2-4. continue문
+- ✅이 밑은 실행하지 말아라✅
+```java
+for (int i =1; i<=10; i++{
+if(i%2 !=0) {
+continue;
+}
+System.out.println(i);
+}
+}
+```
+↑ 홀수는 System.out.println구문 자체가 실행 안함.
+다른 블록이어도 그 밑은 수행하지 않게 되는 것!
+❓❓❓❓❓❓❓❓❓❓
+```java
+	public static void main(String[] args) {
+		//1부터 100까지 3의 배수의 총합을 구하라.
+		
+		int sum = 0;
+		for (int i =0; i < 101; i++) {
+			if ( i%3 ==0) {
+			sum += i;
+		}
+		}
+		System.out.println(sum);
+		
+	}
+```
+```java
+	public static void main(String[] args) {
+		//1부터 100까지 3의 배수의 총합을 구하라.
+		
+		int sum = 0;
+		for (int i =0; i < 101; i++) {
+			if ( (i&3) !=0) {
+				continue;
+			}
+			sum += i;
+		}
+		System.out.println(sum);
+	}
+```
+왜 두 번째 꺼는 틀린답이 나오는지????????????????
+
+
+
+연습문제1) while문과 math.random() 메소드를 잉요해 두개의 주사위를 던졌을 떄 나오는 눈을 출력하고, 눈의 합이 5가 아니면 계속 주사위를 던지고, 눈의 합이 5이면 실행을 멈추는 코드를 작성해보세요.
+		boolean run = true;
+		
+		while (run) {
+		int su1 = (int) ((Math.random()*6) + 1);
+		int su2 = (int) ((Math.random()*6) + 1);
+		if (su1 + su2 == 5) {
+			System.out.println(su1 + "," + su2);
+			run = false;
+		} else {
+			System.out.println(su1 + "," + su2);
+		}
+		}
+        
+연습문제2) 
+```java
+	public static void main(String[] args) {
+		
+		boolean run = true;
+		int money =0;
+		Scanner scanner = new Scanner(System.in);
+		while(run) {
+			System.out.println("----------");
+			System.out.println("1.예금|2.출금|3.잔고|4.종료");
+			System.out.println("----------");
+			System.out.print("선택>");
+			int su = scanner.nextInt();
+		
+		switch (su) {
+		case 1 :
+			System.out.print("예금액>");
+			int inputMoney = scanner.nextInt();
+			money += inputMoney;
+			break;
+		case 2 :
+			System.out.print("출금액>");
+			int outputMoney = scanner.nextInt();
+			money -= outputMoney;
+			break;
+		case 3 : 
+			System.out.print("잔고>" + money);
+			break;
+		case 4 :
+			System.out.print("프로그램 종료");
+			run = false;
+		}
+		}	
+	}
+```
+❓❓❓❓❓❓❓❓❓❓ 왜 switch에는 꼭 break를 써야하는지? 
+안 쓰면 그럼 swith를 쓰는 의미가 없잖아???!!!ㅠㅠㅠㅠㅠ
