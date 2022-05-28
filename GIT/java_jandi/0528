@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+	
+	
+		Scanner scanner = new Scanner(System.in);
+		
+		int a = scanner.nextInt();
+		int b = scanner.nextInt();
+		int k = scanner.nextInt();
+
+		if (k>=60) {
+			if (k%60 == 0) {
+				k = k / 60;
+				if (a+k < 24)
+				System.out.println(a+k + " "+ b );
+				else {
+				System.out.println(a+k -24 + " "+b );	
+				}
+			} else if (k%60 != 0) {
+				int h = k / 60;
+				int m = k%60;
+				if (b+m<60) {
+					if (a+h < 24)
+						System.out.println( (a+h) + " "+(b+m) );
+						else {
+							System.out.println( (a+h) -24 + " "+(b+m)  );}
+				} else if ((b+m)==60) {
+					if (a+h+1 < 24)
+						System.out.println((a+h) + 1 + " "+ 0);
+						else {
+							System.out.println((a+h) + 1 -24 +" " + 0);
+						}
+				} else {
+					if (a+h+1 < 24)
+						System.out.println(a+h+1+" "+((b+m)-60));
+						else {
+							System.out.println(a+h+1-24 + " "+ ((b+m)-60));}
+				} 
+				}
+			}  
+			else {             
+						if (b + k > 60) {
+							if (a+1 < 24)
+								System.out.println(a+1 + " "+((b+k)-60));
+								else {
+								System.out.println(a+1 -24 + " "+ ((b+k)-60));	}
+						} else if (b +k ==60) {
+							if (a+1 < 24)
+								System.out.println(a+1+" "+0);
+								else {
+									System.out.println(a+1-24+" "+0);}
+						} else if (b +k <60) {
+							if (a < 24)
+								System.out.println(a+ " "+(b+k));
+								else {
+									System.out.println(a-24+ " "+(b+k));
+						}
+	
+			}
+	}}
+}
