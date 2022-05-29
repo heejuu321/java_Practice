@@ -1,0 +1,80 @@
+ int max =0;
+	 int[] array = {1,5,3,8,2};
+	 
+	 for (int a : array) {
+		 if (max < a) {
+			 max = a;
+		 }
+	 }
+	 System.out.println(max);
+   
+   //주어진 배열의 전체 항목의 합과 평균값을 구해보세요
+	   
+	   int[][] array = {
+			   {95, 86},
+			   {83, 92, 96},
+			   {78, 83, 93, 87, 88}
+	   };
+	   int sum = 0;
+	   for (int i=0; i<array.length; i++) {
+		   
+		   for (int j=0; j <array[i].length; j++) {
+			   sum = sum + array[i][j];
+		   } 
+	   }  
+	   System.out.println(sum);
+	  
+	   int su = 0;
+	   for (int k=0; k<array.length;k++) {
+		   su = su + array[k].length;
+	   }
+	   System.out.println(su);
+	   System.out.println( (double) sum / (double) su );
+     
+        //다음은 키보드로부터 학생 수와 각 학생들의 점수를 입력받아서, 최고 점수 및 평균 점수를 구하는 프로그램입니다.
+	   //실행결과를 보고, 알맞게 작성해보세요 
+	   
+	   boolean run = true;
+	   Scanner s = new Scanner(System.in);
+	   int su = 0;
+	   int[] students = null;
+	   int max = 0;
+	   int sum = 0;
+	     
+	   while (run) {
+		   System.out.println("------------------------");
+		   System.out.println("1.학생수|2.점수입력|3.점수리스트|4.분석|5.종료");
+		   System.out.println("------------------------");
+		   System.out.print("선택>");
+		   int choice = s.nextInt();
+		   
+		   if (choice == 1) {
+			   System.out.print("학생수>");
+			   su = s.nextInt();
+			   students = new int[su];
+		   } else if (choice == 2) {
+			   for (int i=0; i< su ; i++) {
+				   System.out.print("Score[" + i + "]" + ">");
+				   students[i] = s.nextInt();
+			   }
+		   } else if (choice == 3) {
+				   for (int k=0; k < su; k++) {
+					   System.out.println("score[" + k + "]" + students[k]);
+			   } 
+			} else if (choice == 4) {
+				   for (int i=0; i<su ; i++) {
+					   if (max < students[i]) {
+						   max = students[i];
+					   }
+				   }
+				   for (int i =0; i< su; i++) {
+					  sum = sum + students[i]; 
+				   }
+				   System.out.println("최고 점수 : " + max);
+				   System.out.println("평균 점수 : " + (double) sum / (double) su);
+			   } else if (choice == 5) {
+				   System.out.println("프로그램 종료");
+			   }
+		   }
+			   
+		   }
