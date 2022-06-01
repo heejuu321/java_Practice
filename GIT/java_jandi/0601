@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class ddd {
+
+		public static void main(String[] args) {
+			
+			Scanner s = new Scanner(System.in);
+			
+			int[] arr = new int[3];
+			
+			for (int i=0; i<3; i++) {
+				int su = s.nextInt();
+				arr[i] = su;
+			}
+			
+			int k = arr[0] * arr[1] * arr[2];		//곱한 수 = k;
+			int cnt = 0;
+			int copy = k;
+			//자릿수 알아내기 자릿수: cnt
+			
+			while (true) {
+				cnt ++;
+				k = k / 10;
+				if (k == 0) {
+					break;
+				}
+			}
+			String copy2 = copy + "";
+			char[] kkk = new char[cnt];					
+		
+			//k를 배열로 만들기
+			for (int i=0; i<cnt;i++) {
+				kkk[i] = copy2.charAt(i);
+			}
+			//여기까지 문제 없음 
+			//0~9로 이루어진 10개짜리 배열 만들기
+			int[] ar = {'0','1','2','3','4','5','6','7','8','9'};
+			
+			//0으로만 이루어진 10개짜리 배열 만들기 
+			int[] zero = new int[10];
+			//for문으로 중복된 수 구하기
+			
+			for (int i=0; i<10;i++) {
+				for (int j=0; j<cnt;j++) {
+					if (ar[i] == kkk[j]) {
+						zero[i] ++;
+					}
+				}
+			}
+			
+			for (int i=0; i<10;i++) {
+				System.out.println(zero[i]);
+			}
+			
+	}
+
+}
