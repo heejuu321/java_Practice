@@ -1,0 +1,31 @@
+	public static void main(String[] args) {
+		
+		//널포인터익셉션 발생
+		int[] arr= null;
+		System.out.println(arr.length);
+		//발생 하게 하는 방법
+		int[] arr2= new int[0];
+		
+		//맞지만 널포인터익셉셜 발생할 수 있으니 바람직X
+		Optional<String> opt = null;;
+		//바람직
+		Optional<String> opt2 = Optional.empty();
+		System.out.println(opt2.get());
+		//그래서 get을 잘 안씀. 널 포인터 익셉션 발생할 수 있어서.
+		
+		//예외처리(오른쪽마우스 surroundwith)
+		String str = "";
+		try {
+			str = opt.get();
+		} catch (Exception e) {
+			str = "";
+		}	
+		
+		System.out.println(str);
+		
+		//번거로우니까
+		str = opt.orElse("");		//Optional에 저장된 값이 null이면 ""반환
+		System.out.println(str);
+		str = opt.orElseGet(()->"");	//람다식으로.	
+		str = opt.orElseGet(String::new);	//메서드참조로.
+	}
