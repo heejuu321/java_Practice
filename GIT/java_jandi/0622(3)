@@ -1,0 +1,26 @@
+		//문자 특화로 읽을 때
+		
+		Reader reader = new FileReader("C:/Temp/test.txt");
+		int readData;
+		
+		while (   (readData = reader.read()) != -1) {
+			System.out.println((char)readData);
+		}
+		
+		//문자특화로 읽을 때 (배열)
+		
+		Reader reader2 = new FileReader("C:/Temp/test.txt");
+		int readData2;
+		char[] byte2 = new char[3];
+		
+		while((readData2 = reader2.read(byte2)) != -1 ) {
+			System.out.println();
+		}
+		
+		//문자 특화로 읽을 때 (배열2)
+		Reader reader3 = new FileReader("C:/Temp/test.txt");
+		int data5;
+		char[] readData5 = new char[3];
+		
+		reader3.read(readData5,0,3);
+		
