@@ -1,0 +1,18 @@
+		FileOutputStream fos = new FileOutputStream("C:/Temp/Object.dat");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		
+		ClassA classA = new ClassA();
+		classA.field2.field1 = 2;
+		ClassA.field3 = 3;
+		
+		oos.writeObject(classA);
+		oos.flush(); oos.close(); fos.close();
+		
+		FileInputStream fis = new FileInputStream("C:/Temp/Object.dat");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		
+		ClassA v = (ClassA) ois.readObject();
+		System.out.println(v.field1);
+		System.out.println(v.field2);
+		System.out.println(v.field3);
+		
